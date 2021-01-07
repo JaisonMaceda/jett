@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.company.jettCore.model.user.JettUser;
 import com.company.jettCore.model.user.UserAccount;
-import com.company.jettCore.repo.user.UserAccountRepo;
 import com.company.jettCore.service.user.UserAccountService;
 
 @Service
