@@ -12,16 +12,17 @@ import org.springframework.stereotype.Service;
 import com.company.jettCore.model.user.JettUser;
 import com.company.jettCore.model.user.UserAccount;
 import com.company.jettCore.repo.user.UserAccountRepo;
+import com.company.jettCore.service.user.UserAccountService;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 	
 	@Autowired
-	private UserAccountRepo userAccountRepo;
+	private UserAccountService userAccountService;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		UserAccount userAccount = userAccountRepo.findUserAccountByCode(username);
+		UserAccount userAccount = userAccountService.findByCode(username);
 		if (userAccount == null) {
 			throw new UsernameNotFoundException("Username not found");
 		}
