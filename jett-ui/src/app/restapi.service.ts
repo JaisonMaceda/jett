@@ -8,8 +8,15 @@ export class RestapiService {
 
   constructor(private http:HttpClient) { }
 
-  public login(username:string, password:string){
-    const headers = new HttpHeaders({Authorization: 'Basic '+btoa(username+":"+password)})
-    this.http.get("http://localhost:8081/");
+  login(username:string, password:string){
+     const headers = new HttpHeaders({Authorization: 'Basic '+btoa(username+":"+password)})
+    return this.http.get("http://localhost:8081/jett_core/login",{headers,responseType: 'text' as 'json'})
+  }
+
+  getUser(){
+    let username="user";
+    let password="P@ssw0rd";
+    const headers=new HttpHeaders({Authorization: 'Basic '+btoa(username+":"+password)});
+    return this.http.get("http://localhost:8081/getUsers",{headers});
   }
 }
