@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.company.jettCore.model.user.UserAccount;
 import com.company.jettCore.service.user.UserAccountService;
 
-@CrossOrigin(origins= "http://localhost:8081")
+@CrossOrigin(origins= "http://localhost:8181")
 @RestController
 @RequestMapping("/userAccount")
 public class UserAccountController{

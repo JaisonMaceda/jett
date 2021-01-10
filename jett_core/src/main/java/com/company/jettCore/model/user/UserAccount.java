@@ -4,6 +4,8 @@ import java.security.NoSuchAlgorithmException;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -38,8 +40,8 @@ public class UserAccount extends JPAEntity {
 	@ManyToOne
 	private UserAccountPositionType positionType;
 	
-	@Column(name = "status")
-	private String status;
+	@Enumerated(EnumType.STRING)
+	private StatusType status;
 	
 	@JoinColumn(name="user_account_role_id")
 	@ManyToOne
@@ -102,11 +104,11 @@ public class UserAccount extends JPAEntity {
 		this.positionType = positionType;
 	}
 
-	public String getStatus() {
+	public StatusType getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(StatusType status) {
 		this.status = status;
 	}
 

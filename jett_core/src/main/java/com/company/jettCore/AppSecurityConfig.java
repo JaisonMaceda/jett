@@ -3,6 +3,7 @@ package com.company.jettCore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -23,9 +24,17 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors();
-		http.csrf().disable();
-		http.authorizeRequests().antMatchers("/**").fullyAuthenticated().and().httpBasic();
+		http.csrf()
+			.disable()
+            .authorizeRequests()
+            .antMatchers(HttpMethod.OPTIONS, "/**")
+            .permitAll()
+            .anyRequest()
+            .authenticated()
+            .and()
+            .httpBasic();
 	}
+	
 	@Bean
 	public AuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
